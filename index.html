@@ -1,0 +1,2923 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmobiliaria CAMPERO - Cochabamba</title>
+    <!-- Permitir que la app acceda a tu sitio -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;
+        script-src * 'unsafe-inline' 'unsafe-eval' data: blob:;
+        style-src * 'unsafe-inline';
+        img-src * data: blob:;
+        connect-src *;
+        font-src *;
+        frame-src *;
+    ">
+
+    <!-- Para que funcione bien en app móvil -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Prevenir zoom en inputs iOS -->
+    <style>
+        input, select, textarea {
+            font-size: 16px !important;
+        }
+        
+        /* Mejorar experiencia táctil */
+        button, a {
+            min-height: 44px;
+            min-width: 44px;
+        }
+    </style>
+    <style>
+        /* ESTILOS GENERALES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* HEADER Y NAVEGACIÓN */
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%231a1a2e" width="1200" height="800"/><path fill="%2316213e" d="M0 400 L300 300 L600 450 L900 350 L1200 450 L1200 800 L0 800 Z"/></svg>');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(37,211,102,0.4);
+            background: #22c55e;
+        }
+
+        /* SECCIÓN DE ESTADÍSTICAS */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-width: 150px;
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #f39c12;
+            margin-bottom: 0.5rem;
+        }
+
+        /* BUSCADOR */
+        .search-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .search-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .filter-group select {
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: 0.3s;
+            background: white;
+        }
+
+        .filter-group select:focus {
+            outline: none;
+            border-color: #f39c12;
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+        }
+
+        .search-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .btn-search {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-search:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(243,156,18,0.4);
+        }
+
+        .btn-clear {
+            padding: 0.8rem 2rem;
+            background: white;
+            color: #666;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-clear:hover {
+            border-color: #f39c12;
+            color: #f39c12;
+        }
+
+        /* FILTROS POR TIPO */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 0.8rem 2rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .filter-tab:hover {
+            border-color: #f39c12;
+            color: #f39c12;
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* INFO DE RESULTADOS */
+        .results-info {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* GRID DE PROPIEDADES */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .property-card.no-disponible {
+            opacity: 0.7;
+            filter: grayscale(0.3);
+        }
+
+        .property-card.no-disponible:hover {
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        .property-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.05);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .status-disponible {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        .status-no-disponible {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .property-info {
+            padding: 1.5rem;
+        }
+
+        .property-price {
+            font-size: 1.6rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .property-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+            min-height: 50px;
+        }
+
+        .property-location {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .property-features {
+            display: flex;
+            gap: 1rem;
+            color: #666;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .property-contact {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3498db;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Estilos para modal de detalles */
+        #detailsModal, #contactModal {
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Efecto hover para tarjetas */
+        .property-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .property-actions {
+            transition: all 0.3s ease;
+        }
+
+        .property-card:hover .property-actions {
+            opacity: 1 !important;
+        }
+
+        /* Estilo para botones de acción */
+        .action-btn {
+            transition: transform 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Scroll personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* CONTACTO */
+        .contact-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #22c55e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(37,211,102,0.4);
+        }
+
+        .btn-phone {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-phone:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(52,152,219,0.4);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0f0f1e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        /* PANEL DE ADMINISTRACIÓN */
+        .admin-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .admin-btn {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #2980b9, #1a252f);
+        }
+
+        /* MODAL DE ADMIN */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .admin-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .admin-protected {
+            border: 2px solid #2ecc71;
+        }
+
+        .security-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 10001;
+        }
+
+        .admin-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .admin-section h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .admin-input, .admin-select {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .admin-input:focus, .admin-select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+        }
+
+        /* ZONAS EDITABLES */
+        .zones-section {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .zone-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .zone-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .zone-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .zone-btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .zone-btn.add {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .zone-btn.remove {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .zone-btn.up {
+            background: #3498db;
+            color: white;
+        }
+
+        .zone-btn.down {
+            background: #f39c12;
+            color: white;
+        }
+
+        /* ACTIVITY LOG */
+        .activity-log {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .log-entry {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+
+        /* UPLOAD SECTION */
+        .upload-section {
+            margin-top: 1rem;
+            border: 2px dashed #3498db;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            background: #f8f9fa;
+        }
+
+        .upload-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin: 0.5rem;
+            transition: 0.3s;
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(52,152,219,0.3);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .image-preview {
+            width: 100px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-img {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .upload-status {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* LISTA DE PROPIEDADES */
+        .property-list-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .photo-management {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f0f8ff;
+            border-radius: 8px;
+        }
+
+        .current-photos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .current-photo {
+            width: 80px;
+            height: 60px;
+            border-radius: 5px;
+            object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .no-photo {
+            color: #999;
+            font-style: italic;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        /* CONTACT FIELDS */
+        .contact-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .contact-input {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* BOTONES */
+        .save-btn {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46,204,113,0.4);
+        }
+
+        .toggle-btn {
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin: 2px;
+            transition: 0.3s;
+        }
+
+        .toggle-btn:hover {
+            opacity: 0.9;
+        }
+
+        .toggle-btn.disponible {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        .toggle-btn.no-disponible {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        /* MODAL LOGIN */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 20000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .login-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .login-content h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(52,152,219,0.3);
+        }
+
+        .login-error {
+            color: #e74c3c;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* NOTIFICACIÓN */
+        .secure-notice {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 9998;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .properties-grid { grid-template-columns: 1fr; }
+            .filter-tab { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .admin-panel { bottom: 10px; right: 10px; }
+            .contact-fields { grid-template-columns: 1fr; }
+            .admin-content { max-width: 95%; padding: 1rem; }
+            .stats { gap: 1rem; }
+            .stat-item { min-width: 120px; padding: 1rem; }
+            .stat-number { font-size: 2rem; }
+            nav ul { gap: 1rem; font-size: 0.9rem; }
+            .contact-buttons { gap: 1rem; }
+            .contact-btn { padding: 0.8rem 1.5rem; }
+            .zones-section { padding: 0.5rem; }
+            .zone-item { flex-direction: column; align-items: stretch; }
+            .zone-actions { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            nav { flex-direction: column; gap: 1rem; }
+            .search-filters { grid-template-columns: 1fr; }
+            .filter-tabs { gap: 0.5rem; }
+            .filter-tab { padding: 0.5rem 1rem; font-size: 0.8rem; }
+            .hero { height: 60vh; }
+            .section { padding: 2rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">🏡 Inmobiliaria CAMPERO</div>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#propiedades">Propiedades</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Tu Hogar Perfecto en Cochabamba</h1>
+            <p>Encuentra alquileres, ventas, anticréticos y lotes al mejor precio</p>
+            <a href="https://api.whatsapp.com/send?phone=59170379898" class="whatsapp-button" target="_blank">
+                📱 WhatsApp 70379898
+            </a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PROPIEDADES -->
+    <section class="section" id="propiedades">
+        <!-- ESTADÍSTICAS -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="countAlquiler">0</div>
+                <div>Alquileres</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="countVenta">0</div>
+                <div>Ventas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="countAnticretico">0</div>
+                <div>Anticréticos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="countLote">0</div>
+                <div>Lotes</div>
+            </div>
+        </div>
+
+        <!-- BUSCADOR -->
+        <div class="search-container">
+            <div class="search-title">🔍 Busca tu propiedad ideal</div>
+            <div class="search-filters">
+                <div class="filter-group">
+                    <label>💰 Precio Máximo</label>
+                    <select id="precioMax">
+                        <option value="">Todos los precios</option>
+                        <option value="1000">Hasta Bs. 1,000</option>
+                        <option value="1500">Hasta Bs. 1,500</option>
+                        <option value="2000">Hasta Bs. 2,000</option>
+                        <option value="3000">Hasta Bs. 3,000</option>
+                        <option value="50000">Hasta $us 50,000</option>
+                        <option value="100000">Hasta $us 100,000</option>
+                        <option value="150000">Hasta $us 150,000</option>
+                        <option value="200000">Hasta $us 200,000</option>
+                        <option value="999999">Más de $us 200,000</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>📍 Zona</label>
+                    <select id="zona">
+                        <option value="">Todas las zonas</option>
+                        <!-- Las zonas se cargarán dinámicamente -->
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>🛏️ Dormitorios</label>
+                    <select id="dormitorios">
+                        <option value="">Cualquier cantidad</option>
+                        <option value="1">1 dormitorio</option>
+                        <option value="2">2 dormitorios</option>
+                        <option value="3">3 dormitorios</option>
+                        <option value="4">4+ dormitorios</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>🔑 Características</label>
+                    <select id="caracteristicas">
+                        <option value="">Todas</option>
+                        <option value="Garaje">Con garaje</option>
+                        <option value="Piscina">Con piscina</option>
+                        <option value="Ascensor">Con ascensor</option>
+                        <option value="Amoblado">Amoblado</option>
+                        <option value="Estrenar">A estrenar</option>
+                        <option value="mascota">Acepta mascotas</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="search-buttons">
+                <button class="btn-search" onclick="buscarPropiedades()">🔍 Buscar</button>
+                <button class="btn-clear" onclick="limpiarFiltros()">✖️ Limpiar</button>
+            </div>
+        </div>
+
+        <!-- FILTROS POR TIPO -->
+        <div class="filter-tabs">
+            <div class="filter-tab active" data-filter="todos">📋 Todas</div>
+            <div class="filter-tab" data-filter="alquiler">🏠 Alquileres</div>
+            <div class="filter-tab" data-filter="venta">💰 Ventas</div>
+            <div class="filter-tab" data-filter="anticretico">🔑 Anticréticos</div>
+            <div class="filter-tab" data-filter="lote">📐 Lotes</div>
+        </div>
+
+        <!-- INFO DE RESULTADOS -->
+        <div class="results-info" id="resultsInfo">
+            Cargando propiedades...
+        </div>
+
+        <!-- GRID DE PROPIEDADES -->
+        <div class="properties-grid" id="propertiesGrid">
+            <!-- Las propiedades se cargarán aquí con JavaScript -->
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <section class="contact-section" id="contacto">
+        <h2>¿Listo para tu nueva propiedad?</h2>
+        <p>Contáctanos y te ayudaremos a encontrar lo que buscas</p>
+        <div class="contact-buttons">
+            <a href="https://api.whatsapp.com/send?phone=59170379898" class="contact-btn btn-whatsapp" target="_blank">
+                💬 WhatsApp
+            </a>
+            <a href="tel:70379898" class="contact-btn btn-phone">📞 Llamar</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Inmobiliaria CAMPERO - Cochabamba, Bolivia</p>
+        <p>📱 70379898 | 📧 info@inmobiliariacampero.com</p>
+        <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.7;">
+            Especialistas en bienes raíces en Cochabamba
+        </p>
+    </footer>
+
+    <!-- ========== MODALES Y PANELES ========== -->
+
+    <!-- MODAL DE LOGIN -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-content">
+            <h2>🔒 Acceso Administrativo</h2>
+            <input type="password" id="adminPassword" class="login-input" 
+                   placeholder="Contraseña" 
+                   onkeypress="if(event.key==='Enter') verifyLogin()">
+            <button class="login-btn" onclick="verifyLogin()">🔑 Acceder</button>
+            <div id="loginError" class="login-error">Contraseña incorrecta</div>
+            <div style="margin-top: 1rem; font-size: 0.8rem; color: #666;">
+                <small>Solo para administradores autorizados</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICACIÓN DE SEGURIDAD -->
+    <div class="secure-notice" id="secureNotice">🔒 Sesión activa</div>
+
+    <!-- BOTÓN DE ADMINISTRACIÓN -->
+    <div class="admin-panel" id="adminPanel">
+        <button class="admin-btn" onclick="requestAdminAccess()">⚙️ Admin</button>
+    </div>
+    
+    <!-- MODAL DE ADMINISTRACIÓN -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-content admin-protected" id="adminContent">
+            <div class="security-badge">PROTEGIDO</div>
+            <h2>Panel de Administración</h2>
+            
+            <!-- REGISTRO DE ACTIVIDAD -->
+            <div class="admin-section">
+                <h3>📝 Registro de Actividad</h3>
+                <div class="activity-log" id="activityLog">
+                    <!-- Las actividades aparecerán aquí -->
+                </div>
+            </div>
+            
+            <!-- GESTIÓN DE ZONAS -->
+            <div class="admin-section">
+                <h3>📍 Gestión de Zonas</h3>
+                <p><small>Agrega, edita o elimina zonas para el filtro de búsqueda:</small></p>
+                <div class="zones-section" id="zonesSection">
+                    <!-- Las zonas se cargarán aquí -->
+                </div>
+                <div style="margin-top: 10px;">
+                    <button class="zone-btn add" onclick="addNewZone()">➕ Agregar Nueva Zona</button>
+                </div>
+            </div>
+            
+            <!-- BOTÓN AUTO-EDITABLE DE PRECIOS -->
+            <div class="admin-section">
+                <h3>💰 Ajuste Automático de Precios</h3>
+                <p><small>Ajusta automáticamente los precios de todas las propiedades según un porcentaje:</small></p>
+                
+                <div class="upload-section" style="border-color: #f39c12;">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Porcentaje de ajuste:</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button onclick="cambiarPorcentaje(-5)" style="background: #e74c3c; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
+                                -5%
+                            </button>
+                            <input type="number" id="ajustePorcentaje" value="10" 
+                                   style="width: 100px; padding: 10px; border: 2px solid #f39c12; border-radius: 10px; text-align: center; font-size: 1.2rem; font-weight: bold;"
+                                   min="-50" max="200" step="5">
+                            <button onclick="cambiarPorcentaje(5)" style="background: #2ecc71; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">
+                                +5%
+                            </button>
+                        </div>
+                        <div style="margin-top: 10px; display: flex; gap: 5px;">
+                            <button onclick="setPorcentaje(5)" style="background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem;">
+                                +5%
+                            </button>
+                            <button onclick="setPorcentaje(10)" style="background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem;">
+                                +10%
+                            </button>
+                            <button onclick="setPorcentaje(15)" style="background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem;">
+                                +15%
+                            </button>
+                            <button onclick="setPorcentaje(20)" style="background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem;">
+                                +20%
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Tipo de propiedad a ajustar:</label>
+                        <select id="tipoAjuste" style="width: 100%; padding: 10px; border: 2px solid #3498db; border-radius: 10px;">
+                            <option value="todas">Todas las propiedades</option>
+                            <option value="alquiler">Solo Alquileres</option>
+                            <option value="venta">Solo Ventas</option>
+                            <option value="anticretico">Solo Anticréticos</option>
+                            <option value="lote">Solo Lotes</option>
+                        </select>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                        <strong>📊 Resumen del ajuste:</strong>
+                        <div id="resumenAjuste" style="margin-top: 10px; color: #666;">
+                            No hay propiedades para ajustar
+                        </div>
+                    </div>
+                    
+                    <button onclick="aplicarAjustePrecios()" 
+                            style="background: linear-gradient(135deg, #f39c12, #e74c3c); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px;">
+                        🚀 Aplicar Ajuste de Precios
+                    </button>
+                    
+                    <div id="resultadoAjuste" style="margin-top: 10px; font-size: 0.9rem; color: #666;"></div>
+                </div>
+            </div>
+            
+            <!-- AÑADIR NUEVA PROPIEDAD CON FOTOS -->
+            <div class="admin-section">
+                <h3>➕ Añadir Nueva Propiedad con Fotos</h3>
+                
+                <!-- Subida de fotos para nueva propiedad -->
+                <div class="upload-section" style="margin-bottom: 1rem;">
+                    <button class="upload-btn" onclick="document.getElementById('newFileInput').click()">
+                        📁 Subir Fotos para Nueva Propiedad (Máx. 5)
+                    </button>
+                    
+                    <input type="file" id="newFileInput" class="file-input" 
+                           accept="image/*" multiple 
+                           onchange="handleNewPropertyImages(event)">
+                    
+                    <div class="preview-container" id="newImagePreviewContainer">
+                        <!-- Vista previa de fotos para nueva propiedad -->
+                    </div>
+                    
+                    <div class="upload-status" id="newUploadStatus">
+                        Selecciona imágenes para la nueva propiedad (máx. 5)
+                    </div>
+                </div>
+                
+                <!-- Formulario de datos -->
+                <select id="newTipo" class="admin-select">
+                    <option value="">Selecciona tipo</option>
+                    <option value="alquiler">Alquiler</option>
+                    <option value="venta">Venta</option>
+                    <option value="anticretico">Anticrético</option>
+                    <option value="lote">Lote</option>
+                </select>
+                
+                <input type="text" id="newPrecio" class="admin-input" 
+                       placeholder="Precio (ej: Bs. 1,500 o $us 50,000)">
+                
+                <input type="text" id="newNombre" class="admin-input" 
+                       placeholder="Nombre de la propiedad">
+                
+                <textarea id="newDescripcion" class="admin-input" 
+                          placeholder="Descripción detallada" 
+                          rows="3"></textarea>
+                
+                <select id="newZona" class="admin-select">
+                    <option value="">Selecciona zona</option>
+                    <!-- Las zonas se cargarán dinámicamente -->
+                </select>
+                
+                <input type="number" id="newDorm" class="admin-input" 
+                       placeholder="Dormitorios (0 para lotes)" min="0">
+                
+                <input type="number" id="newBanos" class="admin-input" 
+                       placeholder="Baños" min="0">
+                
+                <input type="text" id="newExtra" class="admin-input" 
+                       placeholder="Características extra (separadas por comas)">
+                
+                <input type="number" id="newMetros" class="admin-input" 
+                       placeholder="Metros cuadrados">
+                
+                <div class="contact-fields">
+                    <input type="text" id="newTelefono" class="contact-input" 
+                           placeholder="Teléfono (ej: 70379898)" value="70379898">
+                    <input type="text" id="newWhatsapp" class="contact-input" 
+                           placeholder="WhatsApp (ej: 70379898)" value="70379898">
+                </div>
+                
+                <div class="search-buttons" style="margin-top: 15px;">
+                    <button onclick="añadirPropiedadConFotos()" 
+                            class="btn-search">
+                        📸➕ Añadir Propiedad con Fotos
+                    </button>
+                    <button onclick="limpiarFormularioNuevaPropiedad()" 
+                            class="btn-clear">
+                        ✖️ Limpiar
+                    </button>
+                </div>
+            </div>
+            
+            <!-- CONFIGURACIÓN DE SEGURIDAD -->
+            <div class="admin-section">
+                <h3>⚙️ Configuración de Seguridad</h3>
+                <button onclick="changePassword()" 
+                        style="background: #e74c3c; color: white; border: none; padding: 0.8rem; border-radius: 10px; width: 100%; margin-bottom: 0.5rem;">
+                    🔐 Cambiar Contraseña
+                </button>
+                <button onclick="logoutAdmin()" 
+                        style="background: #95a5a6; color: white; border: none; padding: 0.8rem; border-radius: 10px; width: 100%;">
+                    🚪 Cerrar Sesión
+                </button>
+                <button onclick="exportBackup()" 
+                        style="background: #3498db; color: white; border: none; padding: 0.8rem; border-radius: 10px; width: 100%; margin-top: 0.5rem;">
+                    💾 Exportar Backup
+                </button>
+            </div>
+            
+            <button class="save-btn" onclick="guardarCambios()">💾 Guardar Cambios</button>
+            <button onclick="toggleAdminPanel()" 
+                    style="background: #95a5a6; color: white; border: none; padding: 1rem; border-radius: 10px; width: 100%; margin-top: 1rem;">
+                Cerrar Panel
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ========== CONFIGURACIÓN ==========
+        const DEFAULT_PASSWORD = '8685508Aa';
+        const MAX_PHOTOS_PER_PROPERTY = 5; // Solo para nuevas propiedades
+        const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+        const MAX_WIDTH = 800; // Ancho máximo después de compresión
+        const SESSION_DURATION = 30 * 60 * 1000; // 30 minutos
+        const MAX_LOG_ENTRIES = 100;
+
+        // ========== VARIABLES GLOBALES ==========
+        let isAuthenticated = false;
+        let sessionTimeout;
+        let activityLog = [];
+        let newPropertyImages = []; // Para nuevas propiedades
+        let currentFilter = 'todos';
+        let searchFilters = {
+            precioMax: '',
+            zona: '',
+            dormitorios: '',
+            caracteristicas: ''
+        };
+
+        // ========== DATOS DE PROPIEDADES (VACÍO) ==========
+        const props = [];
+
+        // ========== ZONAS EDITABLES ==========
+        let zonas = [
+            "Chiquicollo", "Cala Cala", "Puntiti", "Sarcobamba", "Coña Coña", 
+            "Centro", "Zona Norte", "Tiquipaya", "Quillacollo", "Linde", 
+            "Temporal", "Ramón Rivero", "Maica", "Cap. Ustariz", "El Castillo",
+            "Villa Busch", "Queru Queru", "Pacata Baja", "Amancayas", "Ushpa Ushpa"
+        ];
+
+        // ========== FUNCIONES DE FORMATO ==========
+        function formatBytes(bytes, decimals = 2) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+
+        // ========== COMPRESIÓN DE IMÁGENES ==========
+        function compressImage(file, quality = 0.7) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const img = new Image();
+                    
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        
+                        // Calcular nuevas dimensiones
+                        let width = img.width;
+                        let height = img.height;
+                        
+                        if (width > MAX_WIDTH) {
+                            height = Math.round((height * MAX_WIDTH) / width);
+                            width = MAX_WIDTH;
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        // Convertir a base64 comprimido
+                        const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+                        
+                        resolve({
+                            originalSize: file.size,
+                            compressedSize: Math.round((compressedBase64.length * 3) / 4),
+                            base64: compressedBase64,
+                            originalWidth: img.width,
+                            originalHeight: img.height,
+                            compressedWidth: width,
+                            compressedHeight: height
+                        });
+                    };
+                    
+                    img.onerror = reject;
+                    img.src = e.target.result;
+                };
+                
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // ========== SUBIDA DE FOTOS PARA NUEVAS PROPIEDADES ==========
+        async function handleNewPropertyImages(event) {
+            const files = Array.from(event.target.files);
+            const previewContainer = document.getElementById('newImagePreviewContainer');
+            const uploadStatus = document.getElementById('newUploadStatus');
+            
+            // Limpiar fotos existentes si se excede el límite
+            if (files.length > MAX_PHOTOS_PER_PROPERTY) {
+                mostrarMensaje(`❌ Máximo ${MAX_PHOTOS_PER_PROPERTY} fotos por propiedad`, 'error');
+                // Tomar solo las primeras 5
+                files.length = MAX_PHOTOS_PER_PROPERTY;
+            }
+            
+            newPropertyImages = [];
+            
+            previewContainer.innerHTML = '';
+            uploadStatus.innerHTML = `<span style="color: #3498db;">⏳ Procesando ${files.length} imagen(es)...</span>`;
+            
+            for (const file of files) {
+                if (newPropertyImages.length >= MAX_PHOTOS_PER_PROPERTY) {
+                    uploadStatus.innerHTML = `<span style="color: #e74c3c;">❌ Máximo ${MAX_PHOTOS_PER_PROPERTY} fotos por propiedad</span>`;
+                    break;
+                }
+                
+                const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
+                if (!validTypes.includes(file.type)) {
+                    uploadStatus.innerHTML = '<span style="color: #e74c3c;">❌ Solo imágenes (JPG, PNG, WebP, GIF)</span>';
+                    continue;
+                }
+                
+                if (file.size > MAX_IMAGE_SIZE) {
+                    uploadStatus.innerHTML = `<span style="color: #e74c3c;">❌ Máximo ${formatBytes(MAX_IMAGE_SIZE)}</span>`;
+                    continue;
+                }
+                
+                try {
+                    const result = await compressImage(file, 0.7);
+                    
+                    newPropertyImages.push({
+                        base64: result.base64,
+                        originalSize: result.originalSize,
+                        compressedSize: result.compressedSize
+                    });
+                    
+                    const index = newPropertyImages.length - 1;
+                    const previewDiv = document.createElement('div');
+                    previewDiv.className = 'image-preview';
+                    previewDiv.innerHTML = `
+                        <img src="${result.base64}" alt="Vista previa">
+                        <button class="remove-img" onclick="removeNewPropertyImage(${index})">×</button>
+                        <div style="position: absolute; bottom: 2px; left: 2px; background: rgba(0,0,0,0.7); color: white; padding: 1px 4px; border-radius: 3px; font-size: 10px;">
+                            ${formatBytes(result.compressedSize)}
+                        </div>
+                    `;
+                    previewContainer.appendChild(previewDiv);
+                    
+                    uploadStatus.innerHTML = `<span style="color: #27ae60;">✅ ${newPropertyImages.length} imagen(es) lista(s)</span>`;
+                    
+                } catch (error) {
+                    console.error('Error comprimiendo:', error);
+                    uploadStatus.innerHTML = '<span style="color: #e74c3c;">❌ Error al procesar</span>';
+                }
+            }
+            
+            document.getElementById('newFileInput').value = '';
+        }
+
+        function removeNewPropertyImage(index) {
+            newPropertyImages.splice(index, 1);
+            updateNewPropertyImagePreviews();
+        }
+
+        function updateNewPropertyImagePreviews() {
+            const previewContainer = document.getElementById('newImagePreviewContainer');
+            const uploadStatus = document.getElementById('newUploadStatus');
+            
+            previewContainer.innerHTML = '';
+            
+            newPropertyImages.forEach((img, index) => {
+                const previewDiv = document.createElement('div');
+                previewDiv.className = 'image-preview';
+                previewDiv.innerHTML = `
+                    <img src="${img.base64}" alt="Vista previa">
+                    <button class="remove-img" onclick="removeNewPropertyImage(${index})">×</button>
+                    <div style="position: absolute; bottom: 2px; left: 2px; background: rgba(0,0,0,0.7); color: white; padding: 1px 4px; border-radius: 3px; font-size: 10px;">
+                        ${formatBytes(img.compressedSize)}
+                    </div>
+                `;
+                previewContainer.appendChild(previewDiv);
+            });
+            
+            uploadStatus.innerHTML = newPropertyImages.length > 0 ?
+                `<span style="color: #27ae60;">✅ ${newPropertyImages.length} imagen(es) lista(s) (Máx. ${MAX_PHOTOS_PER_PROPERTY})</span>` :
+                'Selecciona imágenes para la nueva propiedad (máx. 5)';
+        }
+
+        function limpiarFormularioNuevaPropiedad() {
+            // Limpiar campos
+            ['newTipo', 'newPrecio', 'newNombre', 'newDescripcion', 
+             'newZona', 'newDorm', 'newBanos', 'newExtra', 'newMetros', 
+             'newTelefono', 'newWhatsapp'].forEach(id => {
+                document.getElementById(id).value = '';
+            });
+            
+            // Limpiar fotos
+            newPropertyImages = [];
+            updateNewPropertyImagePreviews();
+            
+            mostrarMensaje('✅ Formulario limpiado');
+        }
+
+        // ========== FUNCIONES DE AJUSTE DE PRECIOS ==========
+        function cambiarPorcentaje(cambio) {
+            const input = document.getElementById('ajustePorcentaje');
+            let valor = parseInt(input.value) || 0;
+            valor += cambio;
+            
+            // Limitar entre -50% y 200%
+            if (valor < -50) valor = -50;
+            if (valor > 200) valor = 200;
+            
+            input.value = valor;
+            actualizarResumenAjuste();
+        }
+
+        function setPorcentaje(porcentaje) {
+            document.getElementById('ajustePorcentaje').value = porcentaje;
+            actualizarResumenAjuste();
+        }
+
+        function actualizarResumenAjuste() {
+            const porcentaje = parseInt(document.getElementById('ajustePorcentaje').value) || 0;
+            const tipo = document.getElementById('tipoAjuste').value;
+            
+            // Filtrar propiedades según tipo
+            let propiedadesFiltradas = props;
+            if (tipo !== 'todas') {
+                propiedadesFiltradas = props.filter(prop => prop.t === tipo);
+            }
+            
+            const totalPropiedades = propiedadesFiltradas.length;
+            
+            if (totalPropiedades === 0) {
+                document.getElementById('resumenAjuste').innerHTML = `
+                    <div style="color: #e74c3c;">
+                        ⚠️ No hay propiedades del tipo seleccionado para ajustar
+                    </div>
+                `;
+                return;
+            }
+            
+            // Ejemplo de cálculo para mostrar
+            let ejemploPrecio = 'Bs. 10,000';
+            if (props.length > 0) {
+                ejemploPrecio = props[0].p;
+            }
+            
+            // Calcular nuevo precio ejemplo
+            const precioNumerico = extraerValorNumerico(ejemploPrecio);
+            const nuevoPrecio = calcularNuevoPrecio(ejemploPrecio, porcentaje);
+            
+            document.getElementById('resumenAjuste').innerHTML = `
+                <div>
+                    <strong>Tipo:</strong> ${tipo === 'todas' ? 'Todas las propiedades' : tipo.toUpperCase()}<br>
+                    <strong>Propiedades afectadas:</strong> ${totalPropiedades}<br>
+                    <strong>Porcentaje de ajuste:</strong> ${porcentaje > 0 ? '+' : ''}${porcentaje}%<br>
+                    <strong>Ejemplo:</strong> ${ejemploPrecio} → <strong style="color: #e74c3c;">${nuevoPrecio}</strong>
+                </div>
+            `;
+        }
+
+        function extraerValorNumerico(precioStr) {
+            // Extraer solo números del precio
+            const match = precioStr.match(/(\d+[\d,.]*)/);
+            if (match) {
+                // Remover comas y puntos
+                const numero = match[1].replace(/[,.]/g, '');
+                return parseFloat(numero);
+            }
+            return 0;
+        }
+
+        function calcularNuevoPrecio(precioStr, porcentaje) {
+            const valor = extraerValorNumerico(precioStr);
+            const nuevoValor = valor * (1 + porcentaje / 100);
+            
+            // Formatear el precio
+            if (precioStr.includes('$us')) {
+                return `$us ${Math.round(nuevoValor).toLocaleString('es-ES')}`;
+            } else if (precioStr.includes('Bs.')) {
+                return `Bs. ${Math.round(nuevoValor).toLocaleString('es-ES')}`;
+            } else {
+                return `Bs. ${Math.round(nuevoValor).toLocaleString('es-ES')}`;
+            }
+        }
+
+        function aplicarAjustePrecios() {
+            if (!isAuthenticated) {
+                mostrarMensaje('🔒 Debes iniciar sesión primero', 'error');
+                return;
+            }
+            
+            const porcentaje = parseInt(document.getElementById('ajustePorcentaje').value) || 0;
+            const tipo = document.getElementById('tipoAjuste').value;
+            
+            if (porcentaje === 0) {
+                mostrarMensaje('⚠️ El porcentaje de ajuste es 0%', 'error');
+                return;
+            }
+            
+            if (!confirm(`¿Aplicar ajuste de ${porcentaje > 0 ? '+' : ''}${porcentaje}% a ${tipo === 'todas' ? 'TODAS' : tipo.toUpperCase()} las propiedades?`)) {
+                return;
+            }
+            
+            // Filtrar propiedades según tipo
+            let propiedadesAjustar = props;
+            if (tipo !== 'todas') {
+                propiedadesAjustar = props.filter(prop => prop.t === tipo);
+            }
+            
+            if (propiedadesAjustar.length === 0) {
+                mostrarMensaje('⚠️ No hay propiedades para ajustar', 'error');
+                return;
+            }
+            
+            let contadorAjustadas = 0;
+            
+            // Aplicar ajuste a cada propiedad
+            propiedadesAjustar.forEach(prop => {
+                const nuevoPrecio = calcularNuevoPrecio(prop.p, porcentaje);
+                prop.p = nuevoPrecio;
+                contadorAjustadas++;
+            });
+            
+            // Actualizar interfaz
+            mostrarMensaje(`✅ ${contadorAjustadas} propiedades ajustadas en ${porcentaje > 0 ? '+' : ''}${porcentaje}%`);
+            logActivity(`Ajuste de precios: ${contadorAjustadas} propiedades ${porcentaje > 0 ? 'aumentadas' : 'reducidas'} en ${Math.abs(porcentaje)}%`);
+            
+            // Actualizar resumen
+            actualizarResumenAjuste();
+            
+            // Mostrar resultado
+            document.getElementById('resultadoAjuste').innerHTML = `
+                <div style="color: #27ae60; font-weight: bold;">
+                    ✅ ${contadorAjustadas} propiedades ajustadas exitosamente
+                </div>
+            `;
+            
+            // Actualizar vista
+            renderProperties();
+            guardarCambios();
+        }
+
+        // ========== FUNCIONES DE ZONAS ==========
+        function loadZones() {
+            // Cargar zonas guardadas
+            const savedZones = localStorage.getItem('inmobiliariaZonas');
+            if (savedZones) {
+                try {
+                    zonas = JSON.parse(savedZones);
+                } catch (e) {
+                    console.error('Error cargando zonas:', e);
+                }
+            }
+            
+            // Actualizar select de búsqueda
+            const zonaSelect = document.getElementById('zona');
+            zonaSelect.innerHTML = '<option value="">Todas las zonas</option>';
+            zonas.forEach(zona => {
+                const option = document.createElement('option');
+                option.value = zona;
+                option.textContent = zona;
+                zonaSelect.appendChild(option);
+            });
+            
+            // Actualizar select en añadir propiedad
+            const newZonaSelect = document.getElementById('newZona');
+            newZonaSelect.innerHTML = '<option value="">Selecciona zona</option>';
+            zonas.forEach(zona => {
+                const option = document.createElement('option');
+                option.value = zona;
+                option.textContent = zona;
+                newZonaSelect.appendChild(option);
+            });
+            
+            // Actualizar resumen de ajuste
+            actualizarResumenAjuste();
+        }
+
+        function saveZones() {
+            localStorage.setItem('inmobiliariaZonas', JSON.stringify(zonas));
+            loadZones();
+            mostrarMensaje('✅ Zonas guardadas');
+            logActivity('Zonas actualizadas');
+        }
+
+        function renderZonesAdmin() {
+            const zonesSection = document.getElementById('zonesSection');
+            zonesSection.innerHTML = '';
+            
+            zonas.forEach((zona, index) => {
+                const zoneItem = document.createElement('div');
+                zoneItem.className = 'zone-item';
+                zoneItem.innerHTML = `
+                    <input type="text" class="zone-input" value="${zona}" 
+                           onchange="updateZone(${index}, this.value)">
+                    <div class="zone-actions">
+                        <button class="zone-btn up" onclick="moveZoneUp(${index})" ${index === 0 ? 'disabled' : ''}>⬆</button>
+                        <button class="zone-btn down" onclick="moveZoneDown(${index})" ${index === zonas.length - 1 ? 'disabled' : ''}>⬇</button>
+                        <button class="zone-btn remove" onclick="removeZone(${index})">✖</button>
+                    </div>
+                `;
+                zonesSection.appendChild(zoneItem);
+            });
+        }
+
+        function addNewZone() {
+            if (!isAuthenticated) {
+                mostrarMensaje('🔒 Sesión expirada', 'error');
+                return;
+            }
+            
+            const nuevaZona = prompt('Ingresa el nombre de la nueva zona:');
+            if (nuevaZona && nuevaZona.trim() !== '') {
+                zonas.push(nuevaZona.trim());
+                saveZones();
+                renderZonesAdmin();
+                mostrarMensaje(`✅ Zona "${nuevaZona}" agregada`);
+                logActivity(`Zona agregada: ${nuevaZona}`);
+            }
+        }
+
+        function updateZone(index, newValue) {
+            if (!isAuthenticated) {
+                mostrarMensaje('🔒 Sesión expirada', 'error');
+                return;
+            }
+            
+            if (newValue.trim() !== '') {
+                const oldValue = zonas[index];
+                zonas[index] = newValue.trim();
+                saveZones();
+                mostrarMensaje(`✅ Zona actualizada: ${oldValue} → ${newValue}`);
+                logActivity(`Zona actualizada: ${oldValue} → ${newValue}`);
+            }
+        }
+
+        function removeZone(index) {
+            if (!isAuthenticated) {
+                mostrarMensaje('🔒 Sesión expirada', 'error');
+                return;
+            }
+            
+            if (confirm(`¿Eliminar la zona "${zonas[index]}"?`)) {
+                const zonaEliminada = zonas[index];
+                zonas.splice(index, 1);
+                saveZones();
+                renderZonesAdmin();
+                mostrarMensaje(`✅ Zona "${zonaEliminada}" eliminada`);
+                logActivity(`Zona eliminada: ${zonaEliminada}`);
+            }
+        }
+
+        function moveZoneUp(index) {
+            if (index > 0) {
+                [zonas[index], zonas[index - 1]] = [zonas[index - 1], zonas[index]];
+                saveZones();
+                renderZonesAdmin();
+                logActivity(`Zona movida arriba: ${zonas[index - 1]}`);
+            }
+        }
+
+        function moveZoneDown(index) {
+            if (index < zonas.length - 1) {
+                [zonas[index], zonas[index + 1]] = [zonas[index + 1], zonas[index]];
+                saveZones();
+                renderZonesAdmin();
+                logActivity(`Zona movida abajo: ${zonas[index + 1]}`);
+            }
+        }
+
+        // ========== SEGURIDAD ==========
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return hash.toString();
+        }
+
+        function setupDefaultPassword() {
+            const storedHash = localStorage.getItem('adminHash');
+            if (!storedHash) {
+                localStorage.setItem('adminHash', simpleHash(DEFAULT_PASSWORD));
+            }
+        }
+
+        function verifyLogin() {
+            const password = document.getElementById('adminPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            const storedHash = localStorage.getItem('adminHash');
+            const inputHash = simpleHash(password);
+            
+            if (inputHash === storedHash) {
+                errorDiv.style.display = 'none';
+                document.getElementById('loginModal').style.display = 'none';
+                authenticateUser();
+            } else {
+                errorDiv.textContent = 'Contraseña incorrecta';
+                errorDiv.style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+            }
+        }
+
+        function authenticateUser() {
+            isAuthenticated = true;
+            showSecurityNotice('🔒 Sesión activa');
+            resetSessionTimeout();
+            logActivity('Inicio de sesión');
+            toggleAdminPanel();
+        }
+
+        function requestAdminAccess() {
+            if (isAuthenticated) {
+                toggleAdminPanel();
+            } else {
+                document.getElementById('loginModal').style.display = 'flex';
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('loginError').style.display = 'none';
+            }
+        }
+
+        function resetSessionTimeout() {
+            clearTimeout(sessionTimeout);
+            sessionTimeout = setTimeout(logoutAdmin, SESSION_DURATION);
+        }
+
+        function logoutAdmin() {
+            isAuthenticated = false;
+            clearTimeout(sessionTimeout);
+            document.getElementById('adminModal').style.display = 'none';
+            showSecurityNotice('🚪 Sesión cerrada', 2000);
+            logActivity('Cierre de sesión');
+        }
+
+        function changePassword() {
+            if (!isAuthenticated) return;
+            
+            const currentPass = prompt('Ingresa la contraseña actual:');
+            if (!currentPass) return;
+            
+            const storedHash = localStorage.getItem('adminHash');
+            if (simpleHash(currentPass) !== storedHash) {
+                mostrarMensaje('Contraseña actual incorrecta', 'error');
+                return;
+            }
+            
+            const newPassword = prompt('Ingresa la nueva contraseña:');
+            if (!newPassword) return;
+            
+            const confirmPass = prompt('Confirma la nueva contraseña:');
+            if (newPassword !== confirmPass) {
+                mostrarMensaje('Las contraseñas no coinciden', 'error');
+                return;
+            }
+            
+            if (newPassword.length < 8 || !/\d/.test(newPassword) || !/[A-Z]/.test(newPassword)) {
+                mostrarMensaje('Mínimo 8 caracteres, 1 número y 1 mayúscula', 'error');
+                return;
+            }
+            
+            localStorage.setItem('adminHash', simpleHash(newPassword));
+            mostrarMensaje('✅ Contraseña cambiada');
+            logActivity('Contraseña cambiada');
+        }
+
+        function showSecurityNotice(message, duration = 3000) {
+            const notice = document.getElementById('secureNotice');
+            notice.textContent = message;
+            notice.style.display = 'block';
+            
+            setTimeout(() => {
+                notice.style.display = 'none';
+            }, duration);
+        }
+
+        function logActivity(action) {
+            const timestamp = new Date().toLocaleString('es-ES');
+            const entry = `[${timestamp}] ${action}`;
+            activityLog.unshift(entry);
+            
+            if (activityLog.length > MAX_LOG_ENTRIES) {
+                activityLog.pop();
+            }
+            
+            const logDisplay = document.getElementById('activityLog');
+            if (logDisplay) {
+                logDisplay.innerHTML = activityLog.map(e => `<div class="log-entry">${e}</div>`).join('');
+            }
+            
+            localStorage.setItem('activityLog', JSON.stringify(activityLog));
+        }
+
+        function loadActivityLog() {
+            const savedLog = localStorage.getItem('activityLog');
+            if (savedLog) {
+                activityLog = JSON.parse(savedLog);
+            }
+        }
+
+        // ========== GESTIÓN DE PROPIEDADES ==========
+        function extraerPrecio(precioStr) {
+            const limpiado = precioStr.replace(/[^0-9]/g, '');
+            return limpiado ? parseInt(limpiado) : 0;
+        }
+
+        function buscarPropiedades() {
+            searchFilters.precioMax = document.getElementById('precioMax').value;
+            searchFilters.zona = document.getElementById('zona').value;
+            searchFilters.dormitorios = document.getElementById('dormitorios').value;
+            searchFilters.caracteristicas = document.getElementById('caracteristicas').value;
+            renderProperties();
+        }
+
+        function limpiarFiltros() {
+            document.getElementById('precioMax').value = '';
+            document.getElementById('zona').value = '';
+            document.getElementById('dormitorios').value = '';
+            document.getElementById('caracteristicas').value = '';
+            searchFilters = {
+                precioMax: '',
+                zona: '',
+                dormitorios: '',
+                caracteristicas: ''
+            };
+            renderProperties();
+        }
+
+        function cumpleFiltros(prop) {
+            if (searchFilters.precioMax) {
+                const precio = extraerPrecio(prop.p);
+                const maxPrecio = parseInt(searchFilters.precioMax);
+                if (precio > maxPrecio) return false;
+            }
+
+            if (searchFilters.zona) {
+                if (!prop.z.toLowerCase().includes(searchFilters.zona.toLowerCase())) {
+                    return false;
+                }
+            }
+
+            if (searchFilters.dormitorios) {
+                const minDorm = parseInt(searchFilters.dormitorios);
+                if (minDorm === 4) {
+                    if (prop.d < 4) return false;
+                } else {
+                    if (prop.d !== minDorm) return false;
+                }
+            }
+
+            if (searchFilters.caracteristicas) {
+                const buscar = searchFilters.caracteristicas.toLowerCase();
+                const textoCompleto = (prop.n + ' ' + prop.e + ' ' + prop.z).toLowerCase();
+                
+                if (buscar === 'mascota') {
+                    if (!textoCompleto.includes('mascota') && !textoCompleto.includes('acepta')) {
+                        return false;
+                    }
+                } else if (!textoCompleto.includes(buscar)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function renderProperties() {
+            const grid = document.getElementById('propertiesGrid');
+            const counts = {alquiler:0, venta:0, anticretico:0, lote:0};
+            let resultCount = 0;
+            let disponiblesCount = 0;
+            
+            grid.innerHTML = '';
+            
+            props.forEach(prop => {
+                counts[prop.t]++;
+                
+                const pasaFiltroTipo = (currentFilter === 'todos' || currentFilter === prop.t);
+                const pasaBusqueda = cumpleFiltros(prop);
+                
+                if (pasaFiltroTipo && pasaBusqueda) {
+                    resultCount++;
+                    if (prop.dsp) disponiblesCount++;
+                    
+                    const card = document.createElement('div');
+                    card.className = 'property-card' + (prop.dsp ? '' : ' no-disponible');
+                    
+                    const badgeText = {
+                        alquiler: 'ALQUILER',
+                        venta: 'VENTA',
+                        anticretico: 'ANTICRÉTICO',
+                        lote: 'LOTE'
+                    }[prop.t];
+                    
+                    // Imagen (primera foto si existe)
+                    let imageHtml = '';
+                    if (prop.fotos && prop.fotos.length > 0) {
+                        imageHtml = `<img src="${prop.fotos[0]}" alt="${prop.n}">`;
+                    }
+                    
+                    // Características
+                    let featuresHtml = '';
+                    if (prop.d > 0) {
+                        featuresHtml = `
+                            <div class="feature">🛏️ ${prop.d} Dorm</div>
+                            <div class="feature">🚿 ${prop.b} Baños</div>
+                            ${prop.m ? `<div class="feature">📐 ${prop.m}m²</div>` : ''}
+                            ${prop.e ? `<div class="feature">${prop.e}</div>` : ''}
+                        `;
+                    } else {
+                        featuresHtml = `${prop.e ? `<div class="feature">${prop.e}</div>` : ''}`;
+                    }
+                    
+                    card.innerHTML = `
+                        <div class="property-image" style="${!prop.fotos || prop.fotos.length === 0 ? 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);' : ''}">
+                            <div class="property-badge">${badgeText}</div>
+                            <div class="status-badge ${prop.dsp ? 'status-disponible' : 'status-no-disponible'}">
+                                ${prop.dsp ? 'DISPONIBLE' : 'NO DISPONIBLE'}
+                            </div>
+                            ${imageHtml}
+                            
+                            <!-- Botones de acción en la imagen -->
+                            <div class="property-actions" style="position: absolute; bottom: 10px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; opacity: 0; transition: opacity 0.3s;">
+                                <button class="action-btn view-details" style="background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; cursor: pointer;">
+                                    📋 Ver Detalles
+                                </button>
+                                <button class="action-btn contact" style="background: #25D366; color: white; border: none; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; cursor: pointer;">
+                                    💬 Contactar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="property-info">
+                            <div class="property-price">${prop.p}</div>
+                            <h3 class="property-title">${prop.n}</h3>
+                            <p class="property-location">📍 ${prop.z}</p>
+                            <div class="property-features">
+                                ${featuresHtml}
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Mostrar acciones al pasar el mouse
+                    card.addEventListener('mouseenter', function() {
+                        const actions = this.querySelector('.property-actions');
+                        if (actions) actions.style.opacity = '1';
+                    });
+
+                    card.addEventListener('mouseleave', function() {
+                        const actions = this.querySelector('.property-actions');
+                        if (actions) actions.style.opacity = '0';
+                    });
+
+                    // Configurar eventos de los botones
+                    const viewBtn = card.querySelector('.view-details');
+                    const contactBtn = card.querySelector('.contact');
+                    
+                    if (viewBtn) {
+                        viewBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            mostrarDetallesPropiedad(prop);
+                        });
+                    }
+                    
+                    if (contactBtn) {
+                        contactBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            mostrarModalContacto(prop);
+                        });
+                    }
+                    
+                    grid.appendChild(card);
+                }
+            });
+            
+            // Actualizar estadísticas
+            document.getElementById('countAlquiler').textContent = counts.alquiler;
+            document.getElementById('countVenta').textContent = counts.venta;
+            document.getElementById('countAnticretico').textContent = counts.anticretico;
+            document.getElementById('countLote').textContent = counts.lote;
+            
+            // Actualizar info de resultados
+            const resultInfo = document.getElementById('resultsInfo');
+            if (resultCount === 0) {
+                resultInfo.innerHTML = '😕 No se encontraron propiedades con esos filtros.';
+            } else {
+                resultInfo.innerHTML = `✅ Se encontraron <strong>${resultCount}</strong> propiedades (${disponiblesCount} disponibles)`;
+            }
+            
+            // Actualizar resumen de ajuste de precios
+            actualizarResumenAjuste();
+        }
+
+        // ========== MODALES DE DETALLES Y CONTACTO ==========
+        function mostrarDetallesPropiedad(propiedad) {
+            // Crear modal de detalles
+            const modal = document.createElement('div');
+            modal.id = 'detailsModal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem;
+            `;
+            
+            // Contenido del modal
+            let fotosHtml = '';
+            if (propiedad.fotos && propiedad.fotos.length > 0) {
+                fotosHtml = `
+                    <div style="margin: 20px 0;">
+                        <h4 style="margin-bottom: 10px;">📸 Fotos (${propiedad.fotos.length})</h4>
+                        <div style="display: flex; gap: 10px; overflow-x: auto; padding: 10px 0;">
+                            ${propiedad.fotos.map(foto => `
+                                <img src="${foto}" style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px; cursor: pointer;" 
+                                     onclick="ampliarFoto('${foto.replace(/'/g, "\\'")}')">
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            const detallesHtml = `
+                <div style="background: white; padding: 2rem; border-radius: 20px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h2>${propiedad.n}</h2>
+                        <button onclick="cerrarModal()" style="background: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">
+                            ✖️ Cerrar
+                        </button>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <div class="property-price" style="font-size: 2rem;">${propiedad.p}</div>
+                            <div style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 10px;">
+                                <strong>📍 Zona:</strong> ${propiedad.z}<br>
+                                <strong>🏠 Tipo:</strong> ${propiedad.t.toUpperCase()}<br>
+                                ${propiedad.d ? `<strong>🛏️ Dormitorios:</strong> ${propiedad.d}<br>` : ''}
+                                ${propiedad.b ? `<strong>🚿 Baños:</strong> ${propiedad.b}<br>` : ''}
+                                ${propiedad.m ? `<strong>📐 Metros cuadrados:</strong> ${propiedad.m}m²<br>` : ''}
+                            </div>
+                            
+                            <div style="margin: 20px 0;">
+                                <h4>📝 Descripción</h4>
+                                <p style="background: #f8f9fa; padding: 15px; border-radius: 10px; line-height: 1.6;">
+                                    ${propiedad.descripcion || 'Sin descripción disponible'}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div style="margin: 20px 0;">
+                                <h4>🔧 Características</h4>
+                                <p style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                                    ${propiedad.e || 'Sin características adicionales'}
+                                </p>
+                            </div>
+                            
+                            ${propiedad.fechaCreacion ? `
+                            <div style="margin: 20px 0;">
+                                <strong>📅 Publicado:</strong> ${new Date(propiedad.fechaCreacion).toLocaleDateString('es-ES')}
+                            </div>
+                            ` : ''}
+                            
+                            <div style="margin: 20px 0; text-align: center;">
+                                <button onclick="mostrarModalContactoDesdeDetalles(${JSON.stringify(propiedad).replace(/"/g, '&quot;')})" 
+                                        style="background: linear-gradient(135deg, #25D366, #22c55e); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: bold; cursor: pointer; width: 100%;">
+                                    💬 Contactar por WhatsApp
+                                </button>
+                                
+                                ${propiedad.telefono ? `
+                                <button onclick="window.location.href='tel:${propiedad.telefono}'" 
+                                        style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px;">
+                                    📞 Llamar
+                                </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${fotosHtml}
+                    
+                    ${isAuthenticated ? `
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                        <h4>⚙️ Opciones de Administración</h4>
+                        <button onclick="editarPropiedad('${propiedad.id}')" 
+                                style="background: #f39c12; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin-right: 10px;">
+                            ✏️ Editar
+                        </button>
+                        <button onclick="eliminarPropiedad('${propiedad.id}')" 
+                                style="background: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">
+                            🗑️ Eliminar
+                        </button>
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            modal.innerHTML = detallesHtml;
+            document.body.appendChild(modal);
+        }
+
+        function mostrarModalContactoDesdeDetalles(propiedad) {
+            cerrarModal();
+            setTimeout(() => mostrarModalContacto(propiedad), 300);
+        }
+
+        function mostrarModalContacto(propiedad) {
+            // Crear modal de contacto
+            const modal = document.createElement('div');
+            modal.id = 'contactModal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10001;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem;
+            `;
+            
+            // Número por defecto o editable
+            let numeroWhatsapp = propiedad.whatsapp || '70379898';
+            
+            const contactoHtml = `
+                <div style="background: white; padding: 2rem; border-radius: 20px; max-width: 500px; width: 100%;">
+                    <h2 style="margin-bottom: 20px;">💬 Contactar Propiedad</h2>
+                    
+                    <p style="margin-bottom: 20px; font-size: 1.1rem;">
+                        <strong>${propiedad.n}</strong><br>
+                        <span style="color: #666;">${propiedad.p} - ${propiedad.z}</span>
+                    </p>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Número de WhatsApp:</label>
+                        <input type="text" id="contactWhatsapp" value="${numeroWhatsapp}" 
+                               style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;"
+                               placeholder="Ej: 70379898">
+                        <small style="color: #666; font-size: 0.8rem;">Puedes cambiar el número si lo deseas</small>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">Mensaje personalizado:</label>
+                        <textarea id="contactMessage" rows="4" 
+                                  style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem;"
+                                  placeholder="Hola, me interesa esta propiedad...">Hola, me interesa la propiedad "${propiedad.n}" de ${propiedad.p} en ${propiedad.z}. ¿Podrían darme más información?</textarea>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button onclick="enviarWhatsApp()" 
+                                style="flex: 1; background: linear-gradient(135deg, #25D366, #22c55e); color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                            📱 Enviar WhatsApp
+                        </button>
+                        <button onclick="cerrarModalContacto()" 
+                                style="background: #95a5a6; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                            ✖️ Cancelar
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.innerHTML = contactoHtml;
+            document.body.appendChild(modal);
+            
+            // Guardar referencia a la propiedad
+            window.currentContactProperty = propiedad;
+        }
+
+        function enviarWhatsApp() {
+            const numero = document.getElementById('contactWhatsapp').value;
+            const mensaje = document.getElementById('contactMessage').value;
+            
+            if (!numero) {
+                alert('Por favor, ingresa un número de WhatsApp');
+                return;
+            }
+            
+            // Limpiar número (solo dígitos)
+            const numeroLimpio = numero.replace(/\D/g, '');
+            
+            const url = `https://api.whatsapp.com/send?phone=591${numeroLimpio}&text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+            cerrarModalContacto();
+        }
+
+        function cerrarModal() {
+            const modal = document.getElementById('detailsModal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function cerrarModalContacto() {
+            const modal = document.getElementById('contactModal');
+            if (modal) {
+                modal.remove();
+            }
+            window.currentContactProperty = null;
+        }
+
+        function ampliarFoto(base64) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                z-index: 10002;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            modal.innerHTML = `
+                <img src="${base64}" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+                <button onclick="this.parentElement.remove()" 
+                        style="position: absolute; top: 20px; right: 20px; background: #e74c3c; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer;">
+                    ×
+                </button>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        // Funciones de administración (editar/eliminar)
+        function editarPropiedad(id) {
+            const index = props.findIndex(p => p.id === id);
+            if (index !== -1) {
+                mostrarMensaje(`✏️ Editar propiedad ${props[index].n}`);
+                // Por simplicidad, mostramos un prompt con los datos
+                const nuevaDescripcion = prompt('Editar descripción:', props[index].descripcion || '');
+                if (nuevaDescripcion !== null) {
+                    props[index].descripcion = nuevaDescripcion;
+                    guardarCambios();
+                    mostrarMensaje('✅ Descripción actualizada');
+                    cerrarModal();
+                    mostrarDetallesPropiedad(props[index]);
+                }
+            }
+        }
+
+        function eliminarPropiedad(id) {
+            if (!confirm('¿Estás seguro de eliminar esta propiedad?')) return;
+            
+            const index = props.findIndex(p => p.id === id);
+            if (index !== -1) {
+                const nombre = props[index].n;
+                props.splice(index, 1);
+                guardarCambios();
+                mostrarMensaje(`✅ Propiedad "${nombre}" eliminada`);
+                cerrarModal();
+                renderProperties();
+            }
+        }
+
+        // ========== FUNCIÓN PARA AÑADIR PROPIEDAD CON FOTOS ==========
+        function añadirPropiedadConFotos() {
+            if (!isAuthenticated) {
+                mostrarMensaje('🔒 Debes iniciar sesión primero', 'error');
+                return;
+            }
+            
+            const tipo = document.getElementById('newTipo').value;
+            const precio = document.getElementById('newPrecio').value;
+            const nombre = document.getElementById('newNombre').value;
+            const descripcion = document.getElementById('newDescripcion').value;
+            const zona = document.getElementById('newZona').value;
+            const dorm = parseInt(document.getElementById('newDorm').value) || 0;
+            const banos = parseInt(document.getElementById('newBanos').value) || 0;
+            const extra = document.getElementById('newExtra').value;
+            const metros = document.getElementById('newMetros').value;
+            const telefono = document.getElementById('newTelefono').value || '70379898';
+            const whatsapp = document.getElementById('newWhatsapp').value || '70379898';
+            
+            // Validaciones
+            if (!tipo || !precio || !nombre || !zona) {
+                mostrarMensaje('❌ Completa tipo, precio, nombre y zona', 'error');
+                return;
+            }
+            
+            // Validar formato de precio
+            if (!precio.includes('Bs.') && !precio.includes('$us')) {
+                mostrarMensaje('❌ Formato de precio incorrecto. Usa "Bs. X,XXX" o "$us X,XXX"', 'error');
+                return;
+            }
+            
+            // Validar máximo de fotos para nuevas propiedades
+            if (newPropertyImages.length > MAX_PHOTOS_PER_PROPERTY) {
+                mostrarMensaje(`❌ Máximo ${MAX_PHOTOS_PER_PROPERTY} fotos por propiedad`, 'error');
+                return;
+            }
+            
+            // Extraer fotos en base64
+            const fotosBase64 = newPropertyImages.map(img => img.base64);
+            
+            const nuevaProp = {
+                t: tipo,
+                p: precio,
+                n: nombre.substring(0, 100),
+                descripcion: descripcion.substring(0, 500),
+                z: zona.substring(0, 100),
+                d: dorm,
+                b: banos,
+                e: extra.substring(0, 200),
+                m: metros || '0',
+                fotos: fotosBase64,
+                telefono: telefono,
+                whatsapp: whatsapp,
+                dsp: true,
+                fechaCreacion: new Date().toISOString(),
+                id: 'prop-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9)
+            };
+            
+            props.push(nuevaProp);
+            
+            // Limpiar todo
+            limpiarFormularioNuevaPropiedad();
+            
+            // Actualizar interfaz
+            mostrarMensaje('✅ Nueva propiedad añadida con ' + fotosBase64.length + ' foto(s)');
+            logActivity(`Propiedad añadida: ${nombre} (${fotosBase64.length} fotos)`);
+            
+            // Actualizar resumen de ajuste
+            actualizarResumenAjuste();
+            
+            // Actualizar vista
+            renderProperties();
+            guardarCambios();
+        }
+
+        // ========== ADMINISTRACIÓN ==========
+        function toggleAdminPanel() {
+            if (!isAuthenticated) {
+                requestAdminAccess();
+                return;
+            }
+            
+            const modal = document.getElementById('adminModal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+            
+            if (modal.style.display === 'flex') {
+                renderZonesAdmin();
+                actualizarResumenAjuste();
+                resetSessionTimeout();
+            }
+        }
+
+        function guardarCambios() {
+            if (!isAuthenticated) {
+                mostrarMensaje('🔒 Sesión expirada', 'error');
+                logoutAdmin();
+                return;
+            }
+            
+            try {
+                localStorage.setItem('inmobiliariaProps', JSON.stringify(props));
+                saveZones();
+                mostrarMensaje('✅ Cambios guardados');
+                logActivity('Cambios guardados');
+                resetSessionTimeout();
+            } catch (e) {
+                if (e.name === 'QuotaExceededError') {
+                    mostrarMensaje('❌ Espacio insuficiente. Usa imágenes más pequeñas.', 'error');
+                } else {
+                    mostrarMensaje('❌ Error al guardar', 'error');
+                }
+            }
+        }
+
+        function exportBackup() {
+            if (!isAuthenticated) return;
+            
+            const backupData = {
+                properties: props,
+                zonas: zonas,
+                settings: {
+                    lastBackup: new Date().toISOString(),
+                    totalProperties: props.length,
+                    totalZones: zonas.length
+                },
+                activityLog: activityLog.slice(0, 50)
+            };
+            
+            const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `backup-inmobiliaria-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            mostrarMensaje('✅ Backup exportado');
+            logActivity('Backup exportado');
+        }
+
+        // ========== FUNCIONES UTILITARIAS ==========
+        function mostrarMensaje(mensaje, tipo = 'exito') {
+            const mensajeDiv = document.createElement('div');
+            mensajeDiv.textContent = mensaje;
+            mensajeDiv.style.position = 'fixed';
+            mensajeDiv.style.top = '20px';
+            mensajeDiv.style.right = '20px';
+            mensajeDiv.style.padding = '1rem 2rem';
+            mensajeDiv.style.borderRadius = '10px';
+            mensajeDiv.style.color = 'white';
+            mensajeDiv.style.fontWeight = 'bold';
+            mensajeDiv.style.zIndex = '10001';
+            mensajeDiv.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+            mensajeDiv.style.animation = 'fadeIn 0.5s';
+            
+            if (tipo === 'error') {
+                mensajeDiv.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+            } else {
+                mensajeDiv.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+            }
+            
+            document.body.appendChild(mensajeDiv);
+            
+            setTimeout(() => {
+                mensajeDiv.style.opacity = '0';
+                mensajeDiv.style.transition = 'opacity 0.5s';
+                setTimeout(() => {
+                    document.body.removeChild(mensajeDiv);
+                }, 500);
+            }, 3000);
+        }
+
+        // ========== INICIALIZACIÓN ==========
+        window.addEventListener('DOMContentLoaded', function() {
+            // Configurar contraseña
+            setupDefaultPassword();
+            
+            // Cargar logs
+            loadActivityLog();
+            
+            // Cargar zonas
+            loadZones();
+            
+            // Configurar eventos de ajuste de precios
+            const ajusteInput = document.getElementById('ajustePorcentaje');
+            const tipoSelect = document.getElementById('tipoAjuste');
+            
+            if (ajusteInput) {
+                ajusteInput.addEventListener('input', actualizarResumenAjuste);
+                ajusteInput.addEventListener('change', actualizarResumenAjuste);
+            }
+            
+            if (tipoSelect) {
+                tipoSelect.addEventListener('change', actualizarResumenAjuste);
+            }
+            
+            // Cargar propiedades guardadas
+            const guardadas = localStorage.getItem('inmobiliariaProps');
+            if (guardadas) {
+                try {
+                    const parsed = JSON.parse(guardadas);
+                    props.length = 0;
+                    parsed.forEach(prop => {
+                        props.push({
+                            t: prop.t || '',
+                            p: prop.p || '',
+                            n: prop.n || '',
+                            descripcion: prop.descripcion || '',
+                            z: prop.z || '',
+                            d: prop.d || 0,
+                            b: prop.b || 0,
+                            e: prop.e || '',
+                            m: prop.m || '0',
+                            fotos: prop.fotos || [],
+                            telefono: prop.telefono || '70379898',
+                            whatsapp: prop.whatsapp || '70379898',
+                            dsp: prop.dsp !== undefined ? prop.dsp : true,
+                            fechaCreacion: prop.fechaCreacion || new Date().toISOString(),
+                            id: prop.id || 'prop-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9)
+                        });
+                    });
+                } catch (e) {
+                    console.error('Error cargando propiedades:', e);
+                }
+            }
+            
+            // Configurar eventos de filtros
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentFilter = tab.dataset.filter;
+                    renderProperties();
+                });
+            });
+
+            // Smooth scroll para enlaces
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Eventos para resetear timeout de sesión
+            document.addEventListener('mousemove', resetSessionTimeout);
+            document.addEventListener('keypress', resetSessionTimeout);
+            document.addEventListener('click', resetSessionTimeout);
+
+            // Cerrar modales con ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    cerrarModal();
+                    cerrarModalContacto();
+                }
+            });
+
+            // Cerrar modal haciendo clic fuera
+            document.addEventListener('click', function(e) {
+                if (e.target.id === 'detailsModal' || e.target.id === 'contactModal') {
+                    if (e.target.id === 'detailsModal') cerrarModal();
+                    if (e.target.id === 'contactModal') cerrarModalContacto();
+                }
+            });
+
+            // Renderizar propiedades iniciales
+            renderProperties();
+        });
+    </script>
+<script>
+// ========== COMUNICACIÓN CON APP MÓVIL ==========
+let isMobileApp = false;
+
+// Detectar si estamos en app móvil
+function detectMobileApp() {
+    const userAgent = navigator.userAgent.toLowerCase();
+    isMobileApp = window.ReactNativeWebView !== undefined ||
+                  userAgent.includes('expo') ||
+                  userAgent.includes('reactnative');
+    
+    if (isMobileApp) {
+        console.log('📱 Ejecutando en App Móvil');
+        setupAppCommunication();
+        adjustForMobile();
+    }
+}
+
+// Configurar comunicación
+function setupAppCommunication() {
+    // Escuchar mensajes de la app
+    window.addEventListener('message', function(event) {
+        try {
+            const message = JSON.parse(event.data);
+            handleAppMessage(message);
+        } catch (e) {
+            // No es mensaje JSON
+        }
+    });
+    
+    // Funciones globales para la app
+    window.handleMobileImage = function(imageData) {
+        alert('✅ Imagen recibida desde la app móvil');
+        // Aquí puedes procesar la imagen
+        console.log('Imagen recibida:', imageData.substring(0, 100) + '...');
+        
+        // Buscar campo para poner la imagen
+        const photoInputs = document.querySelectorAll('input[type="text"]');
+        for (let input of photoInputs) {
+            if (input.placeholder && input.placeholder.toLowerCase().includes('foto')) {
+                input.value = imageData;
+                break;
+            }
+        }
+    };
+    
+    window.handleMobileLogin = function(success) {
+        if (success) {
+            alert('🔓 Sesión iniciada desde app móvil');
+            // Si tienes función de login, llámala aquí
+            if (typeof authenticateUser === 'function') {
+                authenticateUser();
+            }
+        }
+    };
+    
+    // Notificar a la app que la página cargó
+    if (window.ReactNativeWebView) {
+        setTimeout(() => {
+            window.ReactNativeWebView.postMessage(JSON.stringify({
+                type: 'PAGE_LOADED',
+                url: window.location.href,
+                title: document.title
+            }));
+        }, 1000);
+    }
+}
+
+// Ajustar interfaz para móvil
+function adjustForMobile() {
+    // Mejorar botones para toque
+    const style = document.createElement('style');
+    style.textContent = `
+        @media (max-width: 768px) {
+            button, .btn-search, .btn-clear, .filter-tab {
+                min-height: 44px;
+                min-width: 44px;
+                font-size: 16px;
+            }
+            
+            input, select {
+                font-size: 16px !important;
+                padding: 12px !important;
+            }
+            
+            .property-card {
+                margin: 10px 5px;
+            }
+        }
+        
+        /* Mejorar scroll en móvil */
+        body {
+            -webkit-overflow-scrolling: touch;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Agregar indicador de app
+    if (isMobileApp && !document.getElementById('appIndicator')) {
+        const indicator = document.createElement('div');
+        indicator.id = 'appIndicator';
+        indicator.innerHTML = '📱 App Móvil';
+        indicator.style.cssText = `
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            z-index: 9999;
+            opacity: 0.7;
+        `;
+        document.body.appendChild(indicator);
+    }
+}
+
+// Manejar mensajes de la app
+function handleAppMessage(message) {
+    console.log('Mensaje de app:', message);
+    
+    switch (message.type) {
+        case 'UPLOAD_IMAGE_REQUEST':
+            // Si tienes función para subir imagen, llámala aquí
+            if (typeof handleNewPropertyImages === 'function') {
+                // La app manejará la subida
+                console.log('Solicitud de subida de imagen');
+            }
+            break;
+            
+        case 'LOGIN_REQUEST':
+            // La app manejará el login
+            console.log('Solicitud de login');
+            break;
+    }
+}
+
+// Iniciar detección
+document.addEventListener('DOMContentLoaded', detectMobileApp);
+if (document.readyState === 'complete') {
+    detectMobileApp();
+}
+</script>
+</body>
+</html>
