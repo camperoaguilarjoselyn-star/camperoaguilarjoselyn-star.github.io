@@ -1,155 +1,66 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prueba Sistema - Inmobiliaria CAMPERO</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background: #f0f2f5; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
-        h1 { color: #1a1a2e; border-bottom: 3px solid #f39c12; padding-bottom: 10px; }
-        .card { background: #f8f9fa; padding: 20px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #3498db; }
-        .card.success { border-left-color: #2ecc71; }
-        .card.error { border-left-color: #e74c3c; }
-        .card.warning { border-left-color: #f39c12; }
-        button { background: #3498db; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 5px; }
-        button:hover { background: #2980b9; }
-        button.success { background: #2ecc71; }
-        button.success:hover { background: #27ae60; }
-        .status { padding: 10px; border-radius: 5px; margin: 10px 0; }
-        .status.online { background: #d4edda; color: #155724; }
-        .status.offline { background: #f8d7da; color: #721c24; }
+        body { font-family: Arial; margin: 20px; }
+        .card { background: #f0f0f0; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        button { padding: 10px; margin: 5px; }
+        .ok { color: green; }
+        .error { color: red; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🧪 Prueba del Sistema Dinámico</h1>
-        
-        <div class="card">
-            <h3>1. Verificar archivos</h3>
-            <div id="archivos-status">Comprobando...</div>
-        </div>
-        
-        <div class="card">
-            <h3>2. Verificar datos JSON</h3>
-            <div id="json-status">Comprobando...</div>
-        </div>
-        
-        <div class="card">
-            <h3>3. Estado de sincronización</h3>
-            <div id="sync-status">Comprobando...</div>
-            <button onclick="probarSincronizacion()">🔄 Probar Sincronización</button>
-        </div>
-        
-        <div class="card">
-            <h3>4. Exportar datos</h3>
-            <button onclick="exportarDatos()" class="success">💾 Exportar Datos JSON</button>
-            <div id="export-status"></div>
-        </div>
-        
-        <div class="card">
-            <h3>5. Estado del sistema</h3>
-            <div id="system-status"></div>
-            <button onclick="actualizarEstado()">📊 Actualizar Estado</button>
-        </div>
+    <h1>✅ Sistema de Prueba</h1>
+    
+    <div class="card">
+        <h3>Archivos del Sistema</h3>
+        <div id="files"></div>
     </div>
     
-    <script src="sincronizar.js"></script>
+    <div class="card">
+        <h3>Datos JSON</h3>
+        <div id="json"></div>
+    </div>
+    
     <script>
-        // Esperar a que cargue el sincronizador
-        window.onload = function() {
-            if (window.SincronizadorInmobiliaria) {
-                const sincronizador = new window.SincronizadorInmobiliaria();
-                window.sincronizador = sincronizador; // Hacer disponible globalmente
-                verificarArchivos();
-                verificarJSON();
-                actualizarEstado();
-                sincronizador.iniciarSincronizacionAutomatica();
-            } else {
-                console.error("❌ Sincronizador no disponible");
-                document.getElementById("archivos-status").innerHTML = "❌ Error: sincronizar.js no cargado";
-            }
-        };
-        
-        async function verificarArchivos() {
-            const archivos = ["index.html", "data.json", "estado.json", "sincronizar.js"];
-            let resultadosHTML = "";
+        // Función para verificar archivos
+        async function checkFiles() {
+            const files = ['index.html', 'data.json', 'sincronizar.js'];
+            let html = '';
             
-            for (const archivo of archivos) {
+            for (const file of files) {
                 try {
-                    const response = await fetch(archivo);
-                    resultadosHTML += `<div>${response.ok ? "✅" : "❌"} ${archivo}: ${response.ok ? "OK" : "Error"}</div>`;
-                } catch (error) {
-                    resultadosHTML += `<div>❌ ${archivo}: Error - ${error.message}</div>`;
+                    const response = await fetch(file);
+                    html += `<p>${response.ok ? '✅' : '❌'} ${file}: ${response.ok ? 'OK' : 'Error'}</p>`;
+                } catch {
+                    html += `<p>❌ ${file}: No encontrado</p>`;
                 }
             }
             
-            document.getElementById("archivos-status").innerHTML = resultadosHTML;
+            document.getElementById('files').innerHTML = html;
         }
         
-        async function verificarJSON() {
+        // Función para verificar JSON
+        async function checkJSON() {
             try {
-                const response = await fetch("data.json");
-                if (!response.ok) throw new Error("No se puede cargar");
-                
+                const response = await fetch('data.json');
                 const data = await response.json();
-                document.getElementById("json-status").innerHTML = `
-                    <div>✅ data.json cargado correctamente</div>
-                    <div><strong>Propiedades:</strong> ${data.propiedades?.length || 0}</div>
-                    <div><strong>Zonas:</strong> ${data.zonas?.length || 0}</div>
-                    <div><strong>Última actualización:</strong> ${data.ultima_actualizacion || "N/A"}</div>
+                document.getElementById('json').innerHTML = `
+                    <p>✅ data.json cargado</p>
+                    <p><strong>Propiedades:</strong> ${data.propiedades?.length || 0}</p>
+                    <p><strong>Zonas:</strong> ${data.zonas?.length || 0}</p>
                 `;
             } catch (error) {
-                document.getElementById("json-status").innerHTML = `<div style="color: red;">❌ Error cargando data.json: ${error.message}</div>`;
+                document.getElementById('json').innerHTML = `<p class="error">❌ Error: ${error.message}</p>`;
             }
         }
         
-        async function probarSincronizacion() {
-            if (!window.sincronizador) return alert("Sincronizador no disponible");
-            
-            document.getElementById("sync-status").innerHTML = "⏳ Sincronizando...";
-            
-            try {
-                const datos = await window.sincronizador.sincronizar();
-                document.getElementById("sync-status").innerHTML = `
-                    <div class="status online">✅ Sincronización exitosa</div>
-                    <div><strong>Propiedades obtenidas:</strong> ${datos.propiedades?.length || 0}</div>
-                `;
-            } catch (error) {
-                document.getElementById("sync-status").innerHTML = `
-                    <div class="status offline">❌ Error sincronizando: ${error.message}</div>
-                `;
-            }
-        }
-        
-        function exportarDatos() {
-            if (!window.sincronizador) return alert("Sincronizador no disponible");
-            
-            const resultado = window.sincronizador.exportarParaGitHub();
-            
-            if (resultado.success) {
-                document.getElementById("export-status").innerHTML = `
-                    <div class="status online">✅ ${resultado.message}</div>
-                    <div>Se descargó: ${resultado.filename}</div>
-                `;
-            } else {
-                document.getElementById("export-status").innerHTML = `
-                    <div class="status offline">❌ ${resultado.message}</div>
-                `;
-            }
-        }
-        
-        function actualizarEstado() {
-            if (!window.sincronizador) return alert("Sincronizador no disponible");
-            
-            const estado = window.sincronizador.verificarEstado();
-            
-            document.getElementById("system-status").innerHTML = `
-                <div>${estado.online ? "🌐 Online" : "🔌 Offline"}</div>
-                <div><strong>Última sincronización:</strong> ${estado.ultimaSincronizacion}</div>
-                <div><strong>Propiedades locales:</strong> ${estado.propiedadesLocales}</div>
-            `;
-        }
+        // Ejecutar al cargar
+        window.onload = function() {
+            checkFiles();
+            checkJSON();
+        };
     </script>
 </body>
 </html>
