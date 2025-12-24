@@ -1,0 +1,21 @@
+{
+  "propiedades": [],
+  "zonas": [
+    "Chiquicollo", "Cala Cala", "Puntiti", "Sarcobamba", "Coña Coña", 
+    "Centro", "Zona Norte", "Tiquipaya", "Quillacollo", "Linde", 
+    "Temporal", "Ramón Rivero", "Maica", "Cap. Ustariz", "El Castillo",
+    "Villa Busch", "Queru Queru", "Pacata Baja", "Amancayas", "Ushpa Ushpa"
+  ],
+  "estadisticas": {
+    "total": 0,
+    "venta": 0,
+    "alquiler": 0,
+    "anticretico": 0,
+    "lote": 0
+  },
+  "ultima_actualizacion": "$(date -Iseconds)",
+  "metadata": {
+    "version": "1.0",
+    "actualizado": "$(date)"
+  }
+}

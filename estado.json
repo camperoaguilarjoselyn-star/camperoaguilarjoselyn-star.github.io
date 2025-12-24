@@ -1,0 +1,6 @@
+{
+  "status": "online",
+  "last_update": "$(date -Iseconds)",
+  "files": ["index.html", "data.json", "estado.json"],
+  "message": "Sistema funcionando correctamente"
+}
