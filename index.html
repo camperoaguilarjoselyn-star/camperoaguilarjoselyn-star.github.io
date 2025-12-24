@@ -2106,6 +2106,86 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <script>
+// ========== SISTEMA DINÁMICO CON data.json ==========
+let datosGlobales = {
+    propiedades: [],
+    zonas: [],
+    estadisticas: { total: 0, venta: 0, alquiler: 0, anticretico: 0, lote: 0 }
+};
+
+// Función para cargar datos desde data.json
+async function cargarDatos() {
+    try {
+        const response = await fetch('data.json?v=' + Date.now());
+        if (!response.ok) throw new Error('No se pudo cargar data.json');
+        
+        const datos = await response.json();
+        datosGlobales = datos;
+        
+        // Actualizar props (para compatibilidad)
+        props.length = 0;
+        datos.propiedades.forEach(prop => {
+            props.push({
+                t: prop.tipo || prop.t || '',
+                p: prop.precio || prop.p || '',
+                n: prop.nombre || prop.n || '',
+                descripcion: prop.descripcion || '',
+                z: prop.zona || prop.z || '',
+                d: prop.dormitorios || prop.d || 0,
+                b: prop.banos || prop.b || 0,
+                e: prop.extras || prop.e || '',
+                m: prop.metros || prop.m || '0',
+                fotos: prop.fotos || [],
+                telefono: prop.telefono || '70379898',
+                whatsapp: prop.whatsapp || '70379898',
+                dsp: prop.disponible !== undefined ? prop.disponible : true,
+                fechaCreacion: prop.fechaCreacion || new Date().toISOString(),
+                id: prop.id || 'prop-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9)
+            });
+        });
+        
+        // Actualizar zonas
+        zonas = datos.zonas || zonas;
+        loadZones();
+        
+        // Actualizar estadísticas
+        actualizarEstadisticasDesdeJSON();
+        renderProperties();
+        
+        console.log('✅ Datos cargados:', datos.propiedades.length, 'propiedades');
+        
+    } catch (error) {
+        console.error('❌ Error cargando datos:', error);
+        // Usar datos locales como respaldo
+        cargarDesdeLocalStorage();
+    }
+}
+
+// Función para actualizar estadísticas desde JSON
+function actualizarEstadisticasDesdeJSON() {
+    if (datosGlobales.estadisticas) {
+        document.getElementById('countAlquiler').textContent = datosGlobales.estadisticas.alquiler || 0;
+        document.getElementById('countVenta').textContent = datosGlobales.estadisticas.venta || 0;
+        document.getElementById('countAnticretico').textContent = datosGlobales.estadisticas.anticretico || 0;
+        document.getElementById('countLote').textContent = datosGlobales.estadisticas.lote || 0;
+    }
+}
+
+// Función de respaldo (cargar desde localStorage)
+function cargarDesdeLocalStorage() {
+    console.log('⚠️ Usando datos de localStorage como respaldo');
+    // Tu código existente continuará funcionando
+}
+
+// Cargar datos al iniciar
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(cargarDatos, 500);
+    
+    // Actualizar cada 30 segundos
+    setInterval(cargarDatos, 30000);
+});
+
+// ========== CONFIGURACIÓN ==========
         // ========== CONFIGURACIÓN ==========
         const DEFAULT_PASSWORD = '8685508Aa';
         const MAX_PHOTOS_PER_PROPERTY = 5; // Solo para nuevas propiedades
@@ -3598,6 +3678,74 @@ if (document.readyState === 'complete') {
 
 function exportarDatosParaInternet() {
     try {
+        // Preparar datos para exportar
+        const datosParaExportar = {
+            propiedades: props.map(prop => ({
+                tipo: prop.t,
+                precio: prop.p,
+                nombre: prop.n,
+                descripcion: prop.descripcion || '',
+                zona: prop.z,
+                dormitorios: prop.d,
+                banos: prop.b,
+                extras: prop.e,
+                metros: prop.m,
+                fotos: prop.fotos || [],
+                telefono: prop.telefono || '70379898',
+                whatsapp: prop.whatsapp || '70379898',
+                disponible: prop.dsp,
+                fechaCreacion: prop.fechaCreacion || new Date().toISOString(),
+                id: prop.id
+            })),
+            zonas: zonas,
+            estadisticas: {
+                total: props.length,
+                venta: props.filter(p => p.t === 'venta').length,
+                alquiler: props.filter(p => p.t === 'alquiler').length,
+                anticretico: props.filter(p => p.t === 'anticretico').length,
+                lote: props.filter(p => p.t === 'lote').length
+            },
+            ultima_actualizacion: new Date().toISOString(),
+            metadata: {
+                version: '1.0',
+                exportado: new Date().toISOString()
+            }
+        };
+        
+        // Convertir a JSON
+        const jsonStr = JSON.stringify(datosParaExportar, null, 2);
+        
+        // Crear y descargar archivo
+        const blob = new Blob([jsonStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        
+        a.href = url;
+        a.download = 'datos-inmobiliaria.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        
+        // Guardar también localmente como data.json (para GitHub Pages)
+        localStorage.setItem('datosExportados', jsonStr);
+        
+        // Mostrar mensaje
+        mostrarMensaje('✅ Datos exportados para internet', 'success');
+        
+        // Actualizar estado
+        document.getElementById('ultimaPublicacion').textContent = 
+            new Date().toLocaleString('es-ES');
+            
+        // Limpiar URL
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+        
+        console.log('📊 Datos exportados:', datosParaExportar.propiedades.length, 'propiedades');
+        
+    } catch (error) {
+        mostrarMensaje('❌ Error al exportar: ' + error.message, 'error');
+        console.error('Error en exportarDatos:', error);
+    }
+}
         // Obtener todos los datos de la aplicación
         const datosCompletos = {
             // Propiedades (ajusta según cómo las guardas)
@@ -4179,3 +4327,18 @@ function agregarImagenesAPropiedad(idPropiedad) {
 </script>
 </body>
 </html>
+<script src="sincronizar.js"></script>
+<script>
+    // Sincronizar automáticamente al cargar
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.SincronizadorInmobiliaria) {
+            const sincronizador = new window.SincronizadorInmobiliaria();
+            sincronizador.iniciarSincronizacionAutomatica();
+            
+            // Sincronizar inmediatamente
+            sincronizador.sincronizar().then(datos => {
+                console.log("✅ Datos sincronizados:", datos.propiedades?.length || 0, "propiedades");
+            });
+        }
+    });
+</script>
