@@ -13,9 +13,9 @@
     "anticretico": 0,
     "lote": 0
   },
-  "ultima_actualizacion": "$(date -Iseconds)",
+  "ultima_actualizacion": "2024-12-23T23:00:27-04:00",
   "metadata": {
     "version": "1.0",
-    "actualizado": "$(date)"
+    "actualizado": "Tue Dec 23 23:00:27 -04 2024"
   }
 }

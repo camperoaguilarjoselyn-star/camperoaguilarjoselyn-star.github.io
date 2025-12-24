@@ -1,6 +1,8 @@
 {
   "status": "online",
-  "last_update": "$(date -Iseconds)",
-  "files": ["index.html", "data.json", "estado.json"],
-  "message": "Sistema funcionando correctamente"
+  "last_update": "2024-12-23T23:00:27-04:00",
+  "files": ["index.html", "data.json", "estado.json", ".htaccess", "update.json"],
+  "message": "Sistema funcionando correctamente",
+  "propiedades_count": 0,
+  "zonas_count": 20
 }
