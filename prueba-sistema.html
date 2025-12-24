@@ -2,64 +2,131 @@
 <html>
 <head>
     <title>Prueba Sistema - Inmobiliaria CAMPERO</title>
+    <meta charset="UTF-8">
     <style>
-        body { font-family: Arial; margin: 20px; }
-        .card { background: #f0f0f0; padding: 15px; margin: 10px 0; border-radius: 5px; }
-        button { padding: 10px; margin: 5px; }
-        .ok { color: green; }
-        .error { color: red; }
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #1a1a2e; }
+        .card { 
+            background: #f8f9fa; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 8px; 
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .ok { color: #27ae60; font-weight: bold; }
+        .error { color: #e74c3c; font-weight: bold; }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #2980b9; }
+        #result { margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h1>✅ Sistema de Prueba</h1>
+    <h1>🧪 Sistema de Prueba - Inmobiliaria CAMPERO</h1>
     
     <div class="card">
-        <h3>Archivos del Sistema</h3>
-        <div id="files"></div>
+        <h3>📁 Verificar Archivos del Sistema</h3>
+        <button onclick="checkFiles()">🔍 Verificar Archivos</button>
+        <div id="files-result">Haz clic en "Verificar Archivos"</div>
     </div>
     
     <div class="card">
-        <h3>Datos JSON</h3>
-        <div id="json"></div>
+        <h3>📊 Verificar Datos JSON</h3>
+        <button onclick="checkDataJSON()">📈 Verificar data.json</button>
+        <div id="json-result">Haz clic en "Verificar data.json"</div>
+    </div>
+    
+    <div class="card">
+        <h3>⚙️ Estado del Sistema</h3>
+        <div id="system-status">Cargando...</div>
+        <button onclick="checkAll()">🔄 Verificar Todo</button>
     </div>
     
     <script>
-        // Función para verificar archivos
+        // 1. Función para verificar archivos
         async function checkFiles() {
             const files = ['index.html', 'data.json', 'sincronizar.js'];
-            let html = '';
+            let result = document.getElementById('files-result');
+            result.innerHTML = '<p>⏳ Verificando archivos...</p>';
             
+            let html = '';
             for (const file of files) {
                 try {
                     const response = await fetch(file);
-                    html += `<p>${response.ok ? '✅' : '❌'} ${file}: ${response.ok ? 'OK' : 'Error'}</p>`;
-                } catch {
-                    html += `<p>❌ ${file}: No encontrado</p>`;
+                    if (response.ok) {
+                        html += `<p class="ok">✅ ${file} - EXISTE (${response.status})</p>`;
+                    } else {
+                        html += `<p class="error">❌ ${file} - ERROR (${response.status})</p>`;
+                    }
+                } catch (error) {
+                    html += `<p class="error">❌ ${file} - NO SE PUEDE ACCEDER</p>`;
                 }
             }
             
-            document.getElementById('files').innerHTML = html;
+            result.innerHTML = html;
         }
         
-        // Función para verificar JSON
-        async function checkJSON() {
+        // 2. Función para verificar data.json
+        async function checkDataJSON() {
+            let result = document.getElementById('json-result');
+            result.innerHTML = '<p>⏳ Cargando data.json...</p>';
+            
             try {
                 const response = await fetch('data.json');
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
                 const data = await response.json();
-                document.getElementById('json').innerHTML = `
-                    <p>✅ data.json cargado</p>
-                    <p><strong>Propiedades:</strong> ${data.propiedades?.length || 0}</p>
-                    <p><strong>Zonas:</strong> ${data.zonas?.length || 0}</p>
+                result.innerHTML = `
+                    <p class="ok">✅ data.json CARGADO CORRECTAMENTE</p>
+                    <p><strong>📊 Propiedades:</strong> ${data.propiedades?.length || 0}</p>
+                    <p><strong>📍 Zonas:</strong> ${data.zonas?.length || 0}</p>
+                    <p><strong>🕒 Última actualización:</strong> ${data.ultima_actualizacion || 'No disponible'}</p>
+                    <p><strong>📋 Estadísticas:</strong></p>
+                    <ul>
+                        <li>Total: ${data.estadisticas?.total || 0}</li>
+                        <li>Venta: ${data.estadisticas?.venta || 0}</li>
+                        <li>Alquiler: ${data.estadisticas?.alquiler || 0}</li>
+                        <li>Anticrético: ${data.estadisticas?.anticretico || 0}</li>
+                        <li>Lote: ${data.estadisticas?.lote || 0}</li>
+                    </ul>
                 `;
+                
             } catch (error) {
-                document.getElementById('json').innerHTML = `<p class="error">❌ Error: ${error.message}</p>`;
+                result.innerHTML = `<p class="error">❌ ERROR cargando data.json: ${error.message}</p>`;
             }
         }
         
-        // Ejecutar al cargar
+        // 3. Función para verificar todo
+        async function checkAll() {
+            await checkFiles();
+            await checkDataJSON();
+            updateSystemStatus();
+        }
+        
+        // 4. Actualizar estado del sistema
+        function updateSystemStatus() {
+            const status = document.getElementById('system-status');
+            const now = new Date();
+            status.innerHTML = `
+                <p><strong>🕒 Hora actual:</strong> ${now.toLocaleString('es-ES')}</p>
+                <p><strong>🌐 Navegador:</strong> ${navigator.userAgent.substring(0, 50)}...</p>
+                <p><strong>📡 Conexión:</strong> ${navigator.onLine ? '✅ Online' : '❌ Offline'}</p>
+            `;
+        }
+        
+        // 5. Ejecutar al cargar la página
         window.onload = function() {
-            checkFiles();
-            checkJSON();
+            updateSystemStatus();
+            // Verificar automáticamente después de 2 segundos
+            setTimeout(checkAll, 2000);
         };
     </script>
 </body>
